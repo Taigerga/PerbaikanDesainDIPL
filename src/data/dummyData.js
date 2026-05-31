@@ -1,5 +1,5 @@
 export const mahasiswa = {
-  nama: 'Budi Santoso',
+  nama: 'Muhammad Rizki',
   nim: '10123030',
   jurusan: 'Teknik Informatika',
   fakultas: 'Teknik dan Ilmu Komputer',

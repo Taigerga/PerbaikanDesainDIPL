@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Eye, EyeOff, LogIn, User, Lock, Book, Shield, Smartphone } from 'lucide-react'
+import { Eye, EyeOff, LogIn, User, Lock, GraduationCap, Shield, Smartphone } from 'lucide-react'
 
 export default function Login() {
   const [nim, setNim] = useState('')
@@ -37,9 +37,7 @@ export default function Login() {
       <div className="hidden flex-1 flex-col justify-between bg-gradient-to-br from-blue-800 to-blue-600 p-12 lg:flex lg:w-[55%]">
         <div>
           <div className="flex items-center gap-3">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-sm">
-              <Book size={28} className="text-white" />
-            </div>
+            <img src={`${import.meta.env.BASE_URL}img/logo-unikom.png`} alt="UNIKOM" className="h-14 w-auto" />
             <div>
               <h2 className="text-2xl font-bold text-white">UNIKOM</h2>
               <p className="text-sm text-white/70">Universitas Komputer Indonesia</p>
@@ -59,7 +57,7 @@ export default function Login() {
 
           <div className="grid gap-4">
             {[
-              { icon: Book, title: 'Akademik Terintegrasi', desc: 'KRS, jadwal, nilai, dan absensi dalam satu tempat' },
+              { icon: GraduationCap, title: 'Akademik Terintegrasi', desc: 'KRS, jadwal, nilai, dan absensi dalam satu tempat' },
               { icon: Shield, title: 'Data Aman & Terenkripsi', desc: 'Keamanan data akademik Anda adalah prioritas kami' },
               { icon: Smartphone, title: 'Responsif di Semua Perangkat', desc: 'Akses dari laptop, tablet, maupun smartphone' },
             ].map((item) => (
@@ -88,8 +86,8 @@ export default function Login() {
         >
           <div className="rounded-3xl border border-white/20 bg-white/10 p-8 shadow-2xl backdrop-blur-xl lg:border-gray-200 lg:bg-white lg:shadow-xl lg:dark:border-gray-700 lg:dark:bg-gray-800">
             <div className="mb-8 text-center">
-              <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-primary shadow-lg">
-                <span className="text-3xl font-bold text-white">U</span>
+              <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-2xl bg-white p-2 shadow-lg">
+                <img src={`${import.meta.env.BASE_URL}img/logo-unikom.png`} alt="UNIKOM" className="h-full w-full object-contain" />
               </div>
               <h1 className="text-2xl font-bold text-white lg:text-gray-900 lg:dark:text-white">
                 Selamat Datang
