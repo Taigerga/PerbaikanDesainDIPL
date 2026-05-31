@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { User, Mail, Phone, MapPin, Calendar, BookOpen, Shield, Smartphone, Eye, Moon, Camera, LayoutDashboard, CheckCircle, TrendingUp, AlertTriangle } from 'lucide-react'
 import { useTheme } from '../context/ThemeContext'
 import { useUserPreferences } from '../context/UserPreferencesContext'
@@ -16,9 +16,14 @@ const tabs = [
 
 export default function Profil() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { dark, toggleDark } = useTheme()
   const { fontSize, setFontSize, hiddenCards, toggleDashboardCard, isDashboardCardHidden, frequencies, menuItems } = useUserPreferences()
-  const [activeTab, setActiveTab] = useState('data-diri')
+  const [activeTab, setActiveTab] = useState(location.state?.tab || 'data-diri')
+
+  useEffect(() => {
+    if (location.state?.tab) setActiveTab(location.state?.tab)
+  }, [location.state?.tab])
   const [confirmOpen, setConfirmOpen] = useState(null)
   const [success, setSuccess] = useState(null)
 
@@ -181,12 +186,9 @@ export default function Profil() {
                     role="switch"
                     aria-checked={dark}
                     aria-label="Mode gelap"
-                    className={`relative h-6 w-11 rounded-full transition-colors ${dark ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600'}`}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full p-0.5 transition-colors ${dark ? 'bg-primary' : 'bg-gray-300 dark:bg-gray-600'}`}
                   >
-                    <motion.span
-                      animate={{ x: dark ? 20 : 2 }}
-                      className="absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm"
-                    />
+                    <span className={`h-5 w-5 rounded-full bg-white shadow-sm transition-transform duration-200 ${dark ? 'translate-x-full' : 'translate-x-0'}`} />
                   </button>
                 </div>
 
@@ -244,9 +246,9 @@ export default function Profil() {
                             isDashboardCardHidden(card.id) ? 'bg-gray-300 dark:bg-gray-600' : 'bg-primary'
                           }`}
                         >
-                          <motion.span
-                            animate={{ x: isDashboardCardHidden(card.id) ? 2 : 18 }}
-                            className="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm"
+                          <span
+                            className="absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-200"
+                            style={{ left: isDashboardCardHidden(card.id) ? 2 : 18 }}
                           />
                         </button>
                       </label>

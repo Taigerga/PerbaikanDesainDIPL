@@ -40,7 +40,7 @@ const menuGroups = [
     icon: User,
     items: [
       { to: '/profil', icon: User, label: 'Data Akademik', tab: 'data-diri' },
-      { to: '/profil', icon: Shield, label: 'Akun & Kontak', tab: 'keamanan' },
+      { to: '/profil', icon: Shield, label: 'Keamanan', tab: 'keamanan' },
       { to: '/profil', icon: Eye, label: 'Tampilan', tab: 'tampilan' },
     ],
   },
