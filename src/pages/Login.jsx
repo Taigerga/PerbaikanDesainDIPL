@@ -34,23 +34,23 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen">
-      <div className="hidden flex-1 flex-col justify-between bg-gradient-to-br from-blue-800 to-blue-600 p-12 lg:flex lg:w-[55%]">
+      <div className="hidden flex-1 flex-col justify-between bg-white p-12 lg:flex lg:w-[55%]">
         <div>
           <div className="flex items-center gap-3">
             <img src={`${import.meta.env.BASE_URL}img/logo-unikom.png`} alt="UNIKOM" className="h-14 w-auto" />
             <div>
-              <h2 className="text-2xl font-bold text-white">UNIKOM</h2>
-              <p className="text-sm text-white/70">Universitas Komputer Indonesia</p>
+              <h2 className="text-2xl font-bold text-gray-900">UNIKOM</h2>
+              <p className="text-sm text-gray-500">Universitas Komputer Indonesia</p>
             </div>
           </div>
         </div>
 
         <div className="space-y-6">
           <div>
-            <h1 className="text-4xl font-bold leading-tight text-white">
+            <h1 className="text-4xl font-bold leading-tight text-gray-900">
               Sistem Akademik<br />Terintegrasi
             </h1>
-            <p className="mt-3 max-w-md text-base text-white/70">
+            <p className="mt-3 max-w-md text-base text-gray-500">
               Akses informasi akademik, KRS, nilai, dan layanan kampus dalam satu portal.
             </p>
           </div>
@@ -61,20 +61,20 @@ export default function Login() {
               { icon: Shield, title: 'Data Aman & Terenkripsi', desc: 'Keamanan data akademik Anda adalah prioritas kami' },
               { icon: Smartphone, title: 'Responsif di Semua Perangkat', desc: 'Akses dari laptop, tablet, maupun smartphone' },
             ].map((item) => (
-              <div key={item.title} className="flex items-start gap-4 rounded-xl bg-white/10 p-4 backdrop-blur-sm">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/20">
-                  <item.icon size={20} className="text-white" />
+              <div key={item.title} className="flex items-start gap-4 rounded-xl bg-gray-100 p-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gray-200">
+                  <item.icon size={20} className="text-gray-700" />
                 </div>
                 <div>
-                  <p className="font-semibold text-white">{item.title}</p>
-                  <p className="text-sm text-white/60">{item.desc}</p>
+                  <p className="font-semibold text-gray-900">{item.title}</p>
+                  <p className="text-sm text-gray-500">{item.desc}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <p className="text-sm text-white/40">&copy; 2026 Universitas Komputer Indonesia</p>
+        <p className="text-sm text-gray-400">&copy; 2026 Universitas Komputer Indonesia</p>
       </div>
 
       <div className="flex w-full items-center justify-center bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 px-6 lg:w-[45%] lg:bg-white lg:dark:bg-gray-900">
