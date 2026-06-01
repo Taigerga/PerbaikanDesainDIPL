@@ -1,0 +1,222 @@
+================================================================================
+                    PENJELASAN DESAIN WIREFRAME
+        Perbaikan Desain Interaksi Perangkat Lunak (DIPL)
+           Portal "My Academic UNIKOM" - Prototype Redesign
+================================================================================
+
+1. PENDAHULUAN
+--------------------------------------------------------------------------------
+Proyek ini adalah prototype redesign dari portal akademik "My Academic UNIKOM"
+(my.unikom.ac.id) sebagai tugas UTS mata kuliah Desain Interaksi Perangkat
+Lunak - Universitas Komputer Indonesia (UNIKOM).
+
+Mahasiswa : Muhammad Rizki (NIM: 10123030)
+Teknologi : React 19, Vite 8, Tailwind CSS v4, Framer Motion, Lucide React
+Jenis     : Single-Page Application (SPA) frontend-only (pure UI prototype)
+Data      : Hardcoded dummy data (tanpa backend/database)
+Deploy    : GitHub Pages
+
+
+2. STRUKTUR HALAMAN (7 Halaman)
+--------------------------------------------------------------------------------
+Rute (HashRouter) :
+  #/           -> Login
+  #/dashboard  -> Dashboard
+  #/akademik   -> Akademik (5 tab)
+  #/keuangan   -> Keuangan (2 tab)
+  #/layanan    -> Layanan (5 tab)
+  #/profil     -> Profil (3 tab)
+  #/bantuan    -> Bantuan (redirect ke Layanan > FAQ)
+
+
+3. DESAIN HALAMAN & FITUR
+--------------------------------------------------------------------------------
+
+3.1. HALAMAN LOGIN
+  - Layout dua kolom (split-screen):
+      Kiri  : Branding (logo UNIKOM, nama universitas, ilustrasi dekoratif)
+      Kanan : Form login (input NIM, input password, tombol masuk)
+  - Validasi: NIM = "10123030", Password = "12345"
+  - Loading spinner simulasi (1.2 detik)
+  - SessionStorage untuk trigger onboarding tour setelah login pertama
+
+3.2. HALAMAN DASHBOARD
+  - Greeting dinamis (Pagi/Siang/Sore/Malam) dengan background gradient
+  - 4 Stat Card: SKS Ditempuh (87), IPK (3.42), Semester (VI), Kehadiran (89%)
+  - Warning banner KRS (dismissible)
+  - Aktivitas Akademik Penting (4 kartu dengan border accent warna)
+  - Persetujuan Dosen Wali (kartu hijau dengan status)
+  - Quick Access (7 tombol ikon + bookmark/favorit toggle)
+  - Favorit Saya (item yang dibookmark)
+  - Sering Diakses / Berdasarkan Aktivitasku (rekomendasi personal)
+  - Jadwal Kuliah Hari Ini (timeline vertikal, 4 mata kuliah)
+  - Riwayat Aktivitas Terbaru (5 item feed)
+
+3.3. HALAMAN AKADEMIK (5 Tab)
+  Tab 1 - KRS:
+    - 4 kartu status ringkasan (Pembayaran, Batas SKS, Persetujuan, Periode)
+    - Stepper horizontal 4 langkah (Bayar SPP -> Isi KRS -> Persetujuan -> Pilih Kelas)
+    - Banner info kurikulum
+    - Tabel 6 mata kuliah dengan checkbox, counter SKS (max 24)
+    - Confirm dialog sebelum simpan
+    - Success page dengan ringkasan + langkah selanjutnya
+
+  Tab 2 - Jadwal Kuliah:
+    - Grid kalender mingguan (6 hari x 11 slot waktu)
+    - Blok mata kuliah dengan kode warna
+    - Legenda warna di bawah grid
+
+  Tab 3 - Nilai:
+    - Dropdown pilih semester (I - VI)
+    - 4 kartu stat gradient (IP Semester, Total SKS, IPK, SKS Lulus)
+    - Tabel nilai dengan kode warna huruf (A = hijau, B = biru, C = kuning, D/E = merah)
+
+  Tab 4 - Absensi:
+    - Banner info (minimal 75% kehadiran)
+    - Tabel kehadiran dengan status badge (Aman/Perhatian/Bahaya)
+
+  Tab 5 - Pengisian Kelas:
+    - Kartu mata kuliah dengan toggle pilih kelas (A/B/C)
+    - Tombol simpan
+
+3.4. HALAMAN KEUANGAN (2 Tab)
+  Tab 1 - Tagihan:
+    - Kartu tagihan aktif (gradient merah, Rp 3.500.000, jatuh tempo)
+    - Kartu ringkasan pembayaran
+    - Tombol "Bayar Sekarang"
+
+  Tab 2 - Riwayat Pembayaran:
+    - Dropdown filter (Semua/Lunas/Belum Lunas)
+    - Tabel riwayat pembayaran dengan link download
+
+3.5. HALAMAN LAYANAN (5 Tab)
+  Tab 1 - Layanan:
+    - 6 kartu layanan (Surat Aktif, Surat Lulus, Transkrip, Beasiswa, Izin, Cuti)
+    - Modal form pengajuan (tujuan + catatan)
+    - Confirm dialog sebelum submit
+    - Success page
+    - Tabel Riwayat Pengajuan
+
+  Tab 2 - Kuesioner:
+    - Daftar survey dengan status pill (Belum Diisi/Selesai)
+    - Tombol "Isi" untuk kuesioner yang pending
+
+  Tab 3 - Syarat Wisuda:
+    - Checklist persyaratan wisuda dengan emoji status
+
+  Tab 4 - FAQ / Bantuan:
+    - Akordion 2 kolom (8 item FAQ)
+    - Kartu bantuan (kontak, panduan, replay tour)
+
+  Tab 5 - Chatbot:
+    - Panel chat penuh (header, area pesan, input)
+    - Quick prompts
+    - Typing indicator animation
+    - Keyword-based response matching (fuzzy)
+
+3.6. HALAMAN PROFIL (3 Tab)
+  Tab 1 - Data Diri:
+    - Avatar inisial, nama, NIM, prodi, semester, status badge
+    - Grid field info (nama, NIM, tempat/tgl lahir, email, no HP, alamat)
+    - Tombol "Perbarui Data" dengan confirm dialog
+
+  Tab 2 - Keamanan:
+    - Form ganti password (3 field)
+    - Toggle 2FA
+    - Info box manfaat 2FA
+
+  Tab 3 - Tampilan:
+    - Toggle Dark Mode
+    - Selector ukuran font (Kecil/Normal/Besar) - 3 level
+    - 4 switch visibilitas elemen dashboard
+    - Tampilan data frekuensi aktivitas
+    - Selector bahasa (Indonesia/English)
+
+
+4. KOMPONEN UI REUSABLE
+--------------------------------------------------------------------------------
+  - Sidebar          : Navigasi kiri dengan grup collapsible + animasi
+  - Navbar           : Header sticky (search global, notifikasi, profile, dark mode)
+  - BottomNav        : Navigasi bawah mobile (5 item)
+  - Breadcrumb       : Navigasi breadcrumb dinamis (semua halaman)
+  - DashboardCard    : Kartu stat gradient dengan icon
+  - AIChatWidget     : Floating chatbot FAB + panel slide-up
+  - NotificationPanel: Dropdown notifikasi dengan prioritas + mark-as-read
+  - OnboardingTour   : Modal 4 langkah (muncul otomatis setelah login)
+  - ConfirmDialog    : Modal konfirmasi (summary items, variant danger)
+  - SuccessPage      : Halaman sukses dengan centang + ringkasan + next steps
+  - ErrorMessage     : Tampilan error dengan penyebab + solusi
+  - Tooltip          : Tooltip info (4 posisi)
+  - Skeleton         : Loading placeholder (pulse animation)
+  - PageSkeleton     : Loading placeholder untuk halaman penuh
+
+
+5. DESAIN SISTEM (Design Tokens)
+--------------------------------------------------------------------------------
+  Warna:
+    - Primary   : #1D4ED8 (biru)
+    - Accent    : #F59E0B (kuning/emas)
+    - Success   : #10B981 (hijau)
+    - Danger    : #EF4444 (merah)
+    - Background: #F8FAFC (terang) / #0F172A (gelap)
+
+  Tipografi:
+    - UI     : Plus Jakarta Sans (sans-serif)
+    - Kode   : JetBrains Mono (monospace, untuk NIM)
+
+  Spacing: xs(4px) - sm(8px) - md(16px) - lg(24px) - xl(32px) - 2xl(40px)
+
+  Border Radius: sm(8px) - md(12px) - lg(16px) - xl(24px) - full(9999px)
+
+  Shadow: card, elevated, modal
+
+
+6. FITUR INTERAKTIF & LINTAS HALAMAN
+--------------------------------------------------------------------------------
+  - Dark Mode             : localStorage-persisted, transisi smooth CSS
+  - Pencarian Global      : Synonym-based search dengan context enrichment
+                            (mendeteksi "ipk" -> tampilkan IPK, "bayar" -> tagihan)
+  - Keyboard Shortcuts    : Shift+G (Dashboard), Shift+A (Akademik),
+                            Shift+K (Keuangan), Shift+L (Layanan),
+                            Shift+P (Profil), Shift+B (Bantuan),
+                            / (focus search), Escape (blur)
+  - Animasi Halaman       : Framer Motion AnimatePresence (fade + slide-up)
+  - Toast Notifications   : Stackable, auto-dismiss (success/warning/error/info)
+  - Bookmark / Favorit    : Star toggle pada quick access (localStorage)
+  - Pelacakan Frekuensi   : LocalStorage-based usage tracking untuk rekomendasi
+  - Font Size Customization: 3 level via CSS data attribute
+  - Visibilitas Dashboard : 4 toggle untuk menyembunyikan section dashboard
+  - Loading State         : Skeleton pulse pada setiap halaman
+  - Empty State           : Tampilan khusus saat data kosong
+  - Error State           : Tampilan error dengan penyebab + solusi
+
+
+7. RESPONSIVE DESIGN
+--------------------------------------------------------------------------------
+  Desktop : Sidebar penuh + Navbar + konten utama
+  Tablet  : Sidebar icon-only + Navbar + konten utama
+  Mobile  : BottomNav + drawer menu + konten penuh
+
+  Breakpoint: Tailwind default (sm: 640px, md: 768px, lg: 1024px, xl: 1280px)
+
+
+8. AKSESIBILITAS (WCAG 2.1 AA)
+--------------------------------------------------------------------------------
+  - Kontras warna memadai (text/bg)
+  - Fokus visible pada elemen interaktif
+  - Semantic HTML structure
+  - Label pada form inputs
+  - Status dan error messages yang jelas
+  - Font size adjustable
+
+
+9. REFERENSI DOKUMEN DESAIN
+--------------------------------------------------------------------------------
+  - stitch.txt  : Spesifikasi Figma/Stitch (layout, warna, tipografi, komponen)
+  - rombak.md   : Spesifikasi implementasi detail (638 baris)
+  - promt.md    : Prompt awal prototype
+  - kesesuaian.md: Analisis kesesuaian dengan Eight Golden Rules
+  - 1.md        : Analisis Soal 1 (Eight Golden Rules)
+  - soal4.md    : Rekomendasi Soal 4
+
+================================================================================
